@@ -2,20 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>浙江工业大学 学生学号查询系统</title>
+    <link href=" /static/info.css" rel="stylesheet" type="text/css">
+    <title>新生查学号系统</title>
+
 </head>
-<body>
-    <h1>GETID</h1>
-    <form action="" method="post" enctype="multipart/form-data">
+<body background="/static/back.jpg">
+<div class="getid">
+    <form action="" method="post">
         {% csrf_token %}
-        {{uf.as_p}}
-        {% if sname %}
-        <p>欢迎 ZJUTer ,{{sname}}</p>
-        <p>您的学号为{{scard}}</p>
-        {% endif %}
-        <input type="submit" value="ok">
+        <h2>welcome zjuter</h2>
+        <P>{{ massage }}</P>
+        <p>
+            <label for="sname">姓名：</label>
+            <input type="text" name="sname" class="in" placeholder="姓名" autofocus required/>
+        </p>
+
+        <p>
+            <label for="sname">准考证号：</label>
+            <input type="txet" name="sid" placeholder="准考证号" class="in" required>
+        </p>
+        <input type="submit" class="click" value="确定" >
+         {% if message %}
+        <div class="text1"><b><font color="#dc143c"> {{ message }}</font></b></div>
+         {% else %}
+             {% if sname %}
+            <p ><b><font color="blue">欢迎 ZJUTer ,{{sname}}</font></b></p>
+            <p ><b><font color="blue">您的学号为{{scard}}</font></b></p>
+                 <p ><b><font color="blue">你所在的寝室为{{sroom}}</font></b></p>
+                 {% endif %}
+         {% endif %}
+
     </form>
+
+
+
+</div>
+
 </body>
 </html>
