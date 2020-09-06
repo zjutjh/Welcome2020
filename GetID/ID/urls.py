@@ -4,9 +4,8 @@ from . import views
 app_name = 'ID'
 
 urlpatterns = [
-    path('getID/', views.getID, name='getID'),
-    path('getDorm/', views.getDorm, name='getDorm'),
-    path('indexDorm/', views.indexDorm, name='indexDorm'),
-    path('imgShow/', views.imgShow, name='imgShow'),
+    path('sid/', views.index, name='index_sid'),
+    path('dorm/', views.index_dorm, name='indexDorm'),
+    path('imgShow/', views.img_show, name='imgShow'),
     path('', views.index, name='index'),
 ]

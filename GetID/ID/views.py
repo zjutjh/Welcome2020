@@ -11,7 +11,7 @@ img_folder = {'pf_scenery': '屏峰内景', 'zh_scenery': '朝晖内景', 'pf_ca
               'zh_canteen': '朝晖食堂', 'pf_doom': '屏峰寝室', 'zh_doom': '朝晖寝室'}
 
 
-def imgShow(request):
+def img_show(request):
     img_type = request.GET.get('type')
     img_type = imgType[int(img_type) - 1]
     image_list = [i.imgurl for i in CampusImg.objects.filter(imgtype=img_type)]
@@ -19,15 +19,7 @@ def imgShow(request):
     return render(request, 'imgShow.html', context)
 
 
-def getID(request):
-    return render(request, 'getID.html')
-
-
-def getDorm(request):
-    return render(request, 'getDorm.html')
-
-
-def indexDorm(request):
+def index_dorm(request):
     if request.method == "POST":
         uf = getDormForm(request.POST)
         if uf.is_valid():
@@ -53,9 +45,9 @@ def indexDorm(request):
 def index(request):
     if request.method == "POST":
         uf = getIDForm(request.POST)
-        message = "请检查填写的内容！"
-        print(uf)
-        if uf.is_valid():
+        if not uf.is_valid():
+            message = "请正确填写信息"
+        else:
             sname = uf.cleaned_data['sname']
             sid = uf.cleaned_data['sid']
             sha = hashlib.sha256()
@@ -74,8 +66,7 @@ def index(request):
                            'img_folder': img_folder, 'img_list': img_list}
                 return render(request, 'getID.html', context)
             else:
-                message = "信息输入有误，请重新输入！"
+                message = "没有查到你的信息\r\n请检查输入的信息"
                 return render(request, 'index.html', locals())
-    else:
-        uf = getIDForm()
+
     return render(request, 'index.html', locals())

@@ -13,12 +13,16 @@
     <div class="card animated swing ">
         <img class="logo" src="/static/images/logo1.png" onclick="window.location.href = '../index'">
         {% if sname %}
-            <p class="title animated bounceInLeft s-name">您的信息</p>
-            <p style="margin:0.5rem;font-size:3rem;color: rgb(98, 153, 255);"><b>
+            <p class="title s-name">您的信息</p>
+            <p style="margin:0.5rem;font-size:2.5rem;color: rgb(98, 153, 255);"><b>
                 欢迎 {{ sname }}
             </b></p>
-            <p style="font-size:1rem;font-weight: bold">您的学号是</p>
-            <p style="margin:1rem;font-size:26px;color: rgb(42, 99, 255);">
+            <p style="font-weight: bold">您的学号是</p>
+            <p style="margin:0.5rem;font-size:26px;color: rgb(255,124,78);">
+                {{ scard }}
+            </p>
+            <p style="font-weight: bold">您的班级是</p>
+            <p style="margin:0.5rem;font-size:26px;color: rgb(255,124,78);">
                 {{ scard }}
             </p>
         {% else %}
@@ -26,12 +30,13 @@
         {% endif %}
     </div>
     {% if request.session.sname %}
+
         {% for typename,url_list in img_list.items %}
+            <div  style="text-align: center">
+                <p class="img-title">{{ typename }}</p>
+            </div>
             <div class="animated delay-2s card">
                 <a href="./imgShow?type={{ forloop.counter }}">
-                    <div class="animated bounceInLeft">
-                        <p class="img-title">{{ typename }}</p>
-                    </div>
                     {% for url in url_list %}
                         <span style="">
                             <img class="campus" src="{{ url }}">
@@ -39,6 +44,7 @@
                     {% endfor %}
                 </a>
             </div>
+
         {% endfor %}
     {% endif %}
     <div class="animated delay-2s card">
