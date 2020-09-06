@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>新生查寝室系统</title>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-85 p-b-20">
+
+				<form class="login100-form validate-form" method="post">
+                    {% csrf_token %}
+					<span class="login100-form-title p-b-70">
+						Welcome Zjuter
+					</span>
+					<span class="login100-form-avatar">
+						<img src="/static/images/logo1.png" alt="AVATAR">
+					</span>
+
+					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+						<input class="input100" type="text" name="sname">
+						<span class="focus-input100" data-placeholder="姓名"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+						<input class="input100" type="text" name="sid">
+						<span class="focus-input100" data-placeholder="准考证号"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<input type="submit" class="login100-form-btn" value="确定" >
+					</div>
+{% if message %}
+        <div class="text1"><b><font color="#dc143c"> {{ message }}</font></b></div>
+
+         {% else %}
+             {% if sname %}
+            <p ><b><font color="blue">欢迎 ZJUTer ,{{sname}}</font></b></p>
+            <p ><b><font color="blue">您的学号为{{scard}}</font></b></p>
+                 <p ><b><font color="blue">你所在的寝室为{{sroom}}</font></b></p>
+                 {% endif %}
+         {% endif %}
+
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+
+
+
+</body>
+</html>

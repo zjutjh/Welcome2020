@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link href=" /static/css/getid.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/animate.compat.css" />
+
+    <title>新生查学号系统</title>
+
+</head>
+
+<body>
+    <div id="box">
+        <div id="boox" class="animated swing" style="width: 90%;padding: 1rem;">
+            <img class="touxiang" src="/static/images/logo1.png" onclick="window.location.href = '../index'">
+            {% if sname %}
+            <p class="title animated bounceInLeft sname">{{sname}}</p>
+            <p style="margin:1rem;font-size:30px;color: rgb(98, 153, 255);"><b>
+                    欢迎 ZJUTer
+            </b></p>
+            <p><b>
+                    <font color="black" style="font-size:70px;">寝室: {{sroom}}</font>
+                </b></p>
+            {% for mate in roommate %}
+                <p><b><font color="black" style="font-size:15px;color: darkmagenta;">室友 {{mate.sname}}  {{mate.sclass}}  {{mate.smajor}}  {{mate.sbed}}</font></b></p>
+                {% endfor %}
+            {% else %}
+            <p class="title animated bounceInLeft" style="font-size: 30px;">请回到原地址输入信息登录</p>
+            {% endif %}
+        </div>
+        {% if request.session.sname %}
+            {% for folder,foldername in img_folder.items %}
+            <div id="boox" class="animated delay-2s" style="width: 90%;">
+                <a href="../Imgshow?type=1" style="width: 90%;">
+                    <div class="animated bounceInLeft">
+                        <p class="img_title">{{foldername}}</p>
+                    </div>
+                    <img class="campus" src="/static/images/campus/{{folder}}/1.jpg">
+                    <img class="campus" src="/static/images/campus/{{folder}}/3.jpg">
+                    <img class="campus" src="/static/images/campus/{{folder}}/5.jpg">
+                </a>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    </div>
+
+</body>
+
+</html>
