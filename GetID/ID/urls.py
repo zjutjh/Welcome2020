@@ -1,12 +1,12 @@
 from django.urls import path
 from . import views
 
-app_name='ID'
+app_name = 'ID'
 
-urlpatterns=[
-    path('getID/',views.getID,name='getID'),
-    path('getDoom/',views.getDoom,name='getDoom'),
-    path('indexDoom/',views.indexDoom,name='indexDoom'),
-    path('index/',views.index,name='index'),
-    path('Imgshow/',views.Imgshow,name='Imgshow'),
+urlpatterns = [
+    path('getID/', views.getID, name='getID'),
+    path('getDorm/', views.getDorm, name='getDorm'),
+    path('indexDorm/', views.indexDorm, name='indexDorm'),
+    path('imgShow/', views.imgShow, name='imgShow'),
+    path('', views.index, name='index'),
 ]

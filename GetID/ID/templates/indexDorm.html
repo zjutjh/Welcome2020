@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>新生查学号系统</title>
+    <title>新生查寝室系统</title>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" CONTENT="private,must-revalidate">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/static/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/static/css/util.css">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <!--===============================================================================================-->
 </head>
 <body>
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-t-85 p-b-20">
-            <span class="login100-form-title p-b-70">Welcome Zjuter</span>
-            <span class="login100-form-avatar">
-                    <img src="/static/images/logo1.png" alt="logo"/>
-                </span>
 
             <form class="login100-form validate-form" method="post">
                 {% csrf_token %}
-                <div class="wrap-input100 validate-input m-t-85 m-b-35">
-                    <input class="input100" type="text" name="sname" required>
+                <span class="login100-form-title p-b-70">
+						Welcome Zjuter
+					</span>
+                <span class="login100-form-avatar">
+						<img src="/static/images/logo1.png" alt="AVATAR">
+					</span>
+
+                <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter username">
+                    <input class="input100" type="text" name="s-name">
                     <span class="focus-input100" data-placeholder="姓名"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-                    <input class="input100" type="text" name="sid" required>
+                    <input class="input100" type="text" name="sid">
                     <span class="focus-input100" data-placeholder="准考证号"></span>
                 </div>
-                {% if message %}
-                    <div class="text1" style="text-align: center;margin-top: -1rem;margin-bottom: 1rem;"
-                         color="#dc143c"><b> {{ message }}</b></div>
-                {% endif %}
+
                 <div class="container-login100-form-btn">
                     <input type="submit" class="login100-form-btn" value="确定">
                 </div>
+                {% if message %}
+                    <div class="text1"><b color="#dc143c"> {{ message }}</b></div>
+                {% endif %}
             </form>
         </div>
     </div>
 </div>
+
 </body>
 </html>

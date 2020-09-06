@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <link href=" /static/css/getid.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/static/css/animate.compat.css" />
-
+    <link href=" /static/css/getID.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/animate.compat.css"/>
     <title>新生查学号系统</title>
-
 </head>
 
 <body>
     <div id="box">
-        <div id="boox" class="animated swing" style="width: 90%;padding: 1rem;">
-            <img class="touxiang" src="/static/images/logo1.png" onclick="window.location.href = '../index'">
+        <div id="card" class="animated swing" style="width: 90%;padding: 1rem;">
+            <img class="logo" src="/static/images/logo1.png" onclick="window.location.href = '../index'">
             {% if sname %}
             <p class="title animated bounceInLeft sname">{{sname}}</p>
             <p style="margin:1rem;font-size:30px;color: rgb(98, 153, 255);"><b>
@@ -32,10 +29,10 @@
         </div>
         {% if request.session.sname %}
             {% for folder,foldername in img_folder.items %}
-            <div id="boox" class="animated delay-2s" style="width: 90%;">
+            <div id="card" class="animated delay-2s" style="width: 90%;">
                 <a href="../Imgshow?type=1" style="width: 90%;">
                     <div class="animated bounceInLeft">
-                        <p class="img_title">{{foldername}}</p>
+                        <p class="img-title">{{foldername}}</p>
                     </div>
                     <img class="campus" src="/static/images/campus/{{folder}}/1.jpg">
                     <img class="campus" src="/static/images/campus/{{folder}}/3.jpg">

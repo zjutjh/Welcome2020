@@ -87,12 +87,12 @@ Broadcast.prototype.bindEvent = function () {
   // 下面小圆点点击事件监听
   this.broadcastMeTool.addEventListener('click',e => {
     let obj = e.target;
-    if(obj.className != "broadcastMe-spot") return;
+    if(obj.className !== "broadcastMe-spot") return;
     this.spotClick(obj);
   })
 
   // 开启自动轮播
-  var timer = setInterval(autoPlay.bind(this),this.intervalTime);
+  let timer = setInterval(autoPlay.bind(this), this.intervalTime);
 
   this.el.addEventListener("mouseover",() => {
     clearInterval(timer);
@@ -176,7 +176,7 @@ Broadcast.prototype.renderSpot = function () {
   }
 
   for(let i=0,len=this.broadcastMeSpot.length;i<len;i++){
-    if(i==(flag-1)){
+    if(i===(flag-1)){
       this.broadcastMeSpot[i].className = "broadcastMe-spot broadcastMe-spot-active";
     }else{
       this.broadcastMeSpot[i].className = "broadcastMe-spot";
@@ -194,6 +194,3 @@ Broadcast.prototype.spotClick = function (obj) {
     }
   }
 }
-
-// 如果是在vue的环境下使用，取消下面的注释
-// module.exports = Broadcast;

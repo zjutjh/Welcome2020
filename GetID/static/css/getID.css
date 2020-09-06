@@ -3,34 +3,10 @@
     padding: 0;
 }
 
-HTML,
-body,
-div,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-ol,
-dl,
-li,
-dt,
-dd,
-p,
-blockquote,
-pre,
-form,
-fieldset,
-table,
-th,
-td {
+HTML, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote, pre, form, fieldset, table, th, td {
     border: none;
-    font-family: "微软雅黑", "黑体", "宋体";
-    font-size: 14px;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 html,
@@ -39,15 +15,7 @@ body {
     width: 100%;
 }
 
-address,
-caption,
-cite,
-code,
-dfn,
-em,
-strong,
-th,
-var {
+address, caption, cite, code, dfn, em, strong, th, var {
     font-style: normal;
     font-weight: normal;
 }
@@ -113,9 +81,7 @@ img {
     border: none;
 }
 
-ul,
-ol,
-li {
+ul, ol, li {
     list-style-type: none;
 }
 
@@ -123,32 +89,8 @@ li {
     clear: both;
 }
 
-.clearleft {
-    clear: left;
-}
-
-.clearright {
-    clear: right;
-}
-
-.floatleft {
-    float: left;
-}
-
-.floatright {
-    float: right;
-}
-
 .cursor {
     cursor: pointer;
-}
-
-.bg000 {
-    background: #000;
-}
-
-.color000 {
-    color: #000;
 }
 
 body {
@@ -158,16 +100,16 @@ body {
     background-size: cover;
 }
 
-.sname{
+.s-name {
     font-size: 80px;
     height: 130px;
 }
 
 #box {
     width: 100%;
-    min-height: calc(100% - 160px);
+    min-height: calc(100% - 10rem);
     margin: 0 auto;
-    padding-top: 90px;
+    padding-top: 1.5rem;
 }
 
 #footer {
@@ -182,66 +124,73 @@ body {
     color: #000000;
 }
 
-#boox {
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: 20px;
+.card {
+    margin: 0 auto 20px;
     text-align: center;
     border-radius: 2rem;
-    background:rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-   -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 0 7px 0 #e7e7e7;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, .132), 0 1.2px 3.6px 0 rgba(0, 0, 0, .108);
     padding: 1rem;
+    transition: all 0.4s;
+    max-width: 400px;
 }
-#boox1 {
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    text-align: left;
-    border-radius: 2%;
-    background: white;
+
+.card:hover {
+    margin: 0 auto 10px;
+    text-align: center;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, .132), 0 1.2px 3.6px 0 rgba(0, 0, 0, .108);
+    padding: 1rem;
+    transition: all 0.4s;
+    max-width: 400px;
 }
-.img_title{
+
+.img-title {
     margin-bottom: 1rem;
     color: rgb(104, 170, 255);
     font-size: 2rem;
     font-weight: bold;
-
 }
-.touxiang {
+
+.logo {
     width: 150px;
     height: 150px;
     margin-top: -50px;
     border-radius: 100%;
 }
+
 .campus {
     width: 8rem;
     height: 8rem;
     margin: 0.5rem;
     border-radius: 20%;
+    transition: all 0.4s;
+    box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, .132), 0 1.2px 3.6px 0 rgba(0, 0, 0, .108);
 }
+
+.campus:hover {
+    width: 9rem;
+    height: 9rem;
+    margin: 0.5rem;
+    border-radius: 20%;
+    transition: all 0.4s;
+    box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
+}
+
 .title {
     width: 75%;
     height: 55px;
     font-size: 25px;
     line-height: 55px;
-    margin: 0 auto;
     font-weight: bold;
-    margin-top: 5px;
+    margin: 5px auto 0;
     border-bottom: 3px solid #3192d2;
 }
-
-.lizhi {
-    font-size: 15px;
-    margin-top: 5px;
-}
-
-.titma {
-    font-size: 16px;
-    padding: 10px 0px;
-}
-
 
 
 @media screen and (max-width: 700px) {
@@ -249,11 +198,11 @@ body {
         width: 90%;
     }
 
-    #boox {
+    #card {
         width: 75%;
     }
 
-    .touxiang {
+    .logo {
         width: 100px;
         height: 100px;
     }
@@ -265,32 +214,18 @@ body {
         font-size: 18px;
     }
 
-    .lizhi {
-        font-size: 14px;
-    }
-
-
 }
 
-
-@media screen and (max-width: 320px) {
-    .titma {
-        font-size: 15px;
-    }
-}
-
-
-.return{
-    width: 500px;
-    height: 40px;
-    line-height: 40px;
-    color: #3192d2;
-}
-
-.goback_button{
+.go-back-button {
     position: absolute;
     text-align: center;
-    bottom: 2rem;
-    left: 30%;
-    right: 30%;
+    margin: 2rem 2rem 0rem;
+    bottom: 0.2rem;
+}
+
+
+.broadcastMe .broadcastMe-list .broadcastMe-item img {
+    border-radius: 2rem;
+    object-fit: cover;
+    min-height: calc(100% - 10rem);
 }
