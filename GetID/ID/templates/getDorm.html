@@ -5,22 +5,35 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <link href=" /static/css/getID.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/static/css/animate.compat.css"/>
-    <title>新生查学号系统</title>
+    <title>新生查寝室系统</title>
 </head>
 
 <body>
 <div style="margin: 3rem 1rem 1rem;">
     <div class="card animated swing ">
-        <img class="logo" src="/static/images/logo1.png" onclick="window.location.href = '../index'">
+        <span style="">
+        <img class="logo" src="/static/images/logo1.png" onclick="window.location.href = '.'">
+    </span>
         {% if sname %}
             <p class="title s-name">您的信息</p>
-            <p style="margin:0.5rem;font-size:2.5rem;color: rgb(98, 153, 255);"><b>
-                欢迎 {{ sname }}
+            <p style="margin:0.5rem;font-size:1.6rem;color: rgb(0, 0, 0);"><b>
+                欢迎
             </b></p>
-            <p style="font-weight: bold">您的学号是</p>
-            <p style="margin:0.5rem;font-size:26px;color: rgb(255,124,78);">
-                {{ scard }}
+            <p style="margin:0.5rem;font-size:{% if sname|length <= 5 %}2rem{% else %}1.5rem{% endif %};color: rgb(83, 157, 255);"><b>
+                {{ sname }}
+            </b></p>
+            <p style="font-weight: bold">您的寝室是</p>
+            <p style="margin:0.5rem;font-size:1.3rem;color: rgb(83, 157, 255);">
+                {{ shouse }} {{ sroom }} 床位号{{sbed}}
             </p>
+            {% if roommate %}
+            <p style="font-weight: bold">您的室友是</p>
+            {% endif %}
+            {% for mate in roommate %}
+            <p style="margin:0.5rem;font-size:1.2rem;color: rgb(42, 130, 212);">
+                {{ mate.sname }} {{mate.sclass}} 床位号{{mate.sbed}}
+            </p>
+            {% endfor %}
         {% else %}
             <script>window.location = "./"</script>
         {% endif %}
@@ -42,9 +55,9 @@
 
         {% endfor %}
     {% endif %}
-    <div class="animated delay-2s card">
+    <div class="animated delay-2s card" style="padding:1rem">
         <div class="animated bounceInLeft">
-            <h5>精弘网络@2020 All Right Reserved </h5>
+            <h5 style="font-size: 0.5rem;">浙江工业大学&精弘网络 © 2020 All Right Reserved </h5>
         </div>
     </div>
 </div>

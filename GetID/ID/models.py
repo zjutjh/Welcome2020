@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Student(models.Model):
     sid = models.CharField(max_length=100, primary_key=True, db_index=True, verbose_name="身份证")
     sname = models.CharField(max_length=100, db_index=True, verbose_name="姓名")
