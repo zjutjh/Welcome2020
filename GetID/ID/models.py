@@ -6,6 +6,7 @@ class Student(models.Model):
     scard = models.CharField(max_length=100, verbose_name="学号")
     shouse = models.CharField(max_length=100, blank=True, default=None)
     sroom = models.CharField(max_length=100)
+    scampus = models.CharField(max_length=100)
     smajor = models.CharField(max_length=100, blank=True, default=None)
     sclass = models.CharField(max_length=100, blank=True, default=None)
     sbed = models.CharField(max_length=100, blank=True, default=None)
