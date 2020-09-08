@@ -1,33 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-}
-a {
-    text-decoration: none;
-}
-
-a:link {
-    color: #fff;
-}
-
-a:visited {
-    color: #fff;
-}
-
-a:hover {
-    color: #fff;
-}
-
-a:active {
-    color: #fff;
-}
-
-input::-ms-clear {
-    display: none;
-}
-
-input::-ms-reveal {
-    display: none;
+    font-size: 14px;
 }
 
 input {
@@ -61,14 +35,9 @@ input[disabled] {
 
 img {
     border: none;
+    object-fit: cover;
 }
 
-body {
-    background-image: linear-gradient(to left, rgba(255, 0, 149, 0.2), rgba(0, 247, 255, 0.2)), url(#);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
 
 .s-name {
     font-size: 80px;
@@ -77,22 +46,34 @@ body {
 
 #box {
     width: 100%;
-    min-height: calc(100% - 10rem);
+    height: calc(100% - 12rem);
+    left: 1rem;
+    right: 1rem;
     margin: 0 auto;
     padding-top: 1.5rem;
+    position: absolute;
 }
 
 .card {
-    margin: 0 auto 20px;
+    margin: 0 auto 1rem;
     text-align: center;
     border-radius: 2rem;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, .132), 0 1.2px 3.6px 0 rgba(0, 0, 0, .108);
-    padding: 0.5rem;
+    padding: 1rem;
     transition: all 0.4s;
-    max-width: 300px;
+    max-width: 275px;
+}
+
+.flex-contain {
+    display: flex;
+    flex-grow: 2;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
 }
 
 .card:hover {
@@ -105,7 +86,7 @@ body {
     box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, .132), 0 1.2px 3.6px 0 rgba(0, 0, 0, .108);
     padding: 0.5rem;
     transition: all 0.4s;
-    max-width: 300px;
+    max-width: 275px;
 }
 
 .img-title {
@@ -124,21 +105,23 @@ body {
 }
 
 .campus {
-    width: 7rem;
-    height: 7rem;
+    width: 6.5rem;
+    height: 6.5rem;
     margin: 0.3rem;
     border-radius: 20%;
     transition: all 0.4s;
     box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, .132), 0 1.2px 3.6px 0 rgba(0, 0, 0, .108);
+    object-fit: cover;
 }
 
 .campus:hover {
-    width: 9rem;
-    height: 9rem;
-    margin: 0.5rem;
+    width: 8rem;
+    height: 8rem;
+    margin: 0.4rem;
     border-radius: 20%;
     transition: all 0.4s;
     box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
+    object-fit: cover;
 }
 
 .title {
@@ -152,16 +135,10 @@ body {
 }
 
 .go-back-button {
+    left: calc(50% - 5rem);
     position: absolute;
     text-align: center;
-    margin: 2rem 2rem 0rem;
-    bottom: 0.2rem;
-}
-
-
-.broadcastMe .broadcastMe-list .broadcastMe-item img {
-    border-radius: 2rem;
-    object-fit: cover;
-    min-height: calc(100% - 10rem);
+    bottom: 1rem;
+    max-width: 10rem;
 }
 

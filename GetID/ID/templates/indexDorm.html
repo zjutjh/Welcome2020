@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>新生查寝室系统</title>
+    <title>新生查学号系统</title>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" CONTENT="private,must-revalidate">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/util.css">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/getID.css">
 </head>
 <body>
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100 p-b-20">
-            <span class="login100-form-title">Welcome ZJUTer</span>
-            <span class="login100-form-avatar">
-                    <img src="/static/images/logo1.png" alt="logo"/>
-                </span>
-            <form class="login100-form validate-form" method="post">
-                {% csrf_token %}
-                <div class="wrap-input100 validate-input m-t-85 m-b-35">
-                    <input class="input100" type="text" name="sname" required>
-                    <span class="focus-input100" data-placeholder="姓名"></span>
-                </div>
+<div class="container-login100">
+    <div class="wrap-login100 card" style="text-align: inherit;padding: 10%;">
+        <span class="login100-form-title">Welcome ZJUTer</span>
+        <span class="login100-form-avatar">
+              <img src="/static/images/logo1.png" alt="logo"/>
+        </span>
+        <form class="login100-form validate-form" method="post">
+            {% csrf_token %}
+            <div class="wrap-input100 validate-input">
+                <input class="input100" type="text" name="sname" required>
+                <span class="focus-input100" data-placeholder="姓名"></span>
+            </div>
 
-                <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-                    <input class="input100" type="text" name="sid" required>
-                    <span class="focus-input100" data-placeholder="身份证号"></span>
-                </div>
-                {% if message %}
-                    <div class="text1" style="text-align: center;margin-top: -1rem;margin-bottom: 1rem;"
-                         color="#dc143c"><b> {{ message }}</b></div>
-                {% endif %}
-                <div class="container-login100-form-btn">
-                    <input type="submit" class="login100-form-btn" value="确定">
-                </div>
-            </form>
-        </div>
+            <div class="wrap-input100 validate-input" data-validate="Enter password">
+                <input class="input100" type="text" name="sid" required>
+                <span class="focus-input100" data-placeholder="身份证号"></span>
+            </div>
+            {% if message %}
+                <div class="err-text"><b> {{ message }}</b></div>
+            {% endif %}
+            <div class="container-login100-form-btn">
+                <input type="submit" class="login100-form-btn" value="确定">
+            </div>
+        </form>
     </div>
+
 </div>
+
+<h5 class="footer">浙江工业大学&精弘网络 © 2020 All Right Reserved </h5>
+
 </body>
 </html>

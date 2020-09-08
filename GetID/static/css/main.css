@@ -1,68 +1,30 @@
-@font-face {
-    font-family: Poppins-Regular;
-    src: url('../fonts/poppins/Poppins-Regular.ttf');
-}
-
-@font-face {
-    font-family: Poppins-Medium;
-    src: url('../fonts/poppins/Poppins-Medium.ttf');
-}
-
-@font-face {
-    font-family: Poppins-Bold;
-    src: url('../fonts/poppins/Poppins-Bold.ttf');
-}
-
-@font-face {
-    font-family: Poppins-SemiBold;
-    src: url('../fonts/poppins/Poppins-SemiBold.ttf');
-}
-
-
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
 body, html {
     height: 100%;
-    font-family: Poppins-Regular, sans-serif;
+    font-family: sans-serif;
 }
 
-
-a {
-    font-family: Poppins-Regular, serif;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #666666;
-    margin: 0px;
-    transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-}
-
-a:focus {
-    outline: none !important;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #333333;
+body {
+    background-image: linear-gradient(to left, rgba(255, 0, 149, 0.2), rgba(0, 247, 255, 0.2)), url(#);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 p {
     font-size: 14px;
     line-height: 1.7;
     color: #666666;
-    margin: 0px;
+    margin: 0;
 }
 
 
 input {
     outline: none;
     border: none;
+}
+
+input:-webkit-autofill {
+    background-color: transparent;
 }
 
 input:focus::-webkit-input-placeholder {
@@ -107,30 +69,17 @@ button:hover {
     cursor: pointer;
 }
 
-
-.limiter {
-    width: 100%;
-    margin: 0 auto;
-}
-
 .container-login100 {
-    width: 100%;
-    min-height: 100vh;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
+    min-height: 80vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 15px;
-    background: #fff;
+    padding: 1rem;
 }
 
 .wrap-login100 {
-    width: 390px;
-    background: #fff;
+    width: 70%
 }
 
 
@@ -141,10 +90,9 @@ button:hover {
 .login100-form-title {
     display: block;
     font-weight: bolder;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20%;
     font-size: 3rem;
     color: #333333;
-    line-height: 1.2;
     text-align: center;
 }
 
@@ -154,7 +102,7 @@ button:hover {
     height: 8rem;
     border-radius: 50%;
     overflow: hidden;
-    margin: 0 auto;
+    margin: auto auto 10%;
     box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
 }
 
@@ -169,9 +117,8 @@ button:hover {
 }
 
 .input100 {
-    font-family: Poppins-SemiBold, serif;
-    font-size: 18px;
-    color: #555555;
+    font-family: serif;
+    font-size: 1.2rem;
     line-height: 1.2;
     display: block;
     width: 100%;
@@ -206,7 +153,6 @@ button:hover {
 .focus-input100::after {
     font-family: Poppins-Medium, serif;
     font-size: 1.2rem;
-    color: #999999;
     line-height: 1.2;
     content: attr(data-placeholder);
     display: block;
@@ -241,17 +187,16 @@ button:hover {
 
 .login100-form-btn {
     color: #fff;
+    font-size: 1.5rem;
     line-height: 1.2;
     width: calc(100% - 4rem);
     height: 3rem;
-    background-color: #57b846;
+    background-color: rgba(255, 84, 84, 0.6);
     border-radius: 2rem;
-    box-shadow: 0 10px 30px 0px rgba(87, 184, 70, 0.5);
+    box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
+    backdrop-filter: saturate(180%) blur(20px);
     transition: all 0.4s;
 }
-
-/*------------------------------------------------------------------
-[ Alert validate ]*/
 
 .validate-input {
     position: relative;
@@ -264,4 +209,10 @@ button:hover {
     color: red;
     white-space: pre-line;
     transition: all 0.4s;
+}
+
+.footer {
+    font-size: 0.8rem;
+    text-align: center;
+    color: #555555;
 }

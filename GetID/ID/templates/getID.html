@@ -5,18 +5,19 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <link href=" /static/css/getID.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/static/css/animate.compat.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <title>新生查学号系统</title>
 </head>
 
 <body>
-<div style="margin: 3rem 1rem 1rem;">
+<div style="padding: 4rem 1rem 1rem;">
     <div class="card animated swing ">
         <img class="logo" src="/static/images/logo1.png" onclick="window.location.href = '.'">
         {% if sname %}
             <p class="title s-name">您的信息</p>
-            <p style="margin:0.5rem;font-size:{% if sname|length <= 5 %}2rem{% else %}1.5rem{% endif %};color: rgb(83, 157, 255);"><b>
+            <p style="margin:0.5rem;font-size:{% if sname|length <= 5 %}2rem{% else %}1.5rem{% endif %};color: rgb(83, 157, 255);">
                 {{ sname }}
-            </b></p>
+            </p>
             <p style="font-weight: bold">您的学号是</p>
             <p style="margin:0.5rem;font-size:26px;color: rgb(83, 157, 255);">
                 {{ scard }}
@@ -32,26 +33,20 @@
     {% if request.session.sname %}
 
         {% for typename,url_list in img_list.items %}
-            <div  style="text-align: center">
+            <div style="text-align: center">
                 <p class="img-title">{{ typename }}</p>
             </div>
-            <div class="animated delay-2s card">
-                <a href="./imgShow?type={{ forloop.counter }}">
-                    {% for url in url_list %}
-                        <span style="">
-                            <img class="campus" src="{{ url }}">
-                        </span>
-                    {% endfor %}
-                </a>
+            <div class="flex-contain card">
+                {% for url in url_list %}
+                    <img class="campus" src="{{ url }}"
+                         onclick="window.location='./imgShow?type={{ forloop.counter }}'">
+                {% endfor %}
             </div>
-
         {% endfor %}
     {% endif %}
-    <div class="animated delay-2s card" style="padding:1rem">
-        <div class="animated bounceInLeft">
-            <h5 style="font-size: 0.5rem;">浙江工业大学&精弘网络 © 2020 All Right Reserved </h5>
-        </div>
-    </div>
+
+    <h5 class="footer">浙江工业大学&精弘网络 © 2020 All Right Reserved </h5>
+
 </div>
 </body>
 
