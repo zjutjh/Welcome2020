@@ -1,1 +1,59 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><link href="/static/css/getID.css" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/static/css/animate.compat.css"><link rel="stylesheet" type="text/css" href="/static/css/main.css"><title>新生查学号系统</title></head><body><div class="view-box"><div class="animated swing card"><img class="logo" src="/static/images/logo1.png" onclick='window.location.href="."'><h1 class="title s-name">您的信息</h1><p class="info-filed" style="font-size:{};">{{ sname }}</p><div class="flex-contain"><div class="tip-card" style="background-color:#00bfff">专业<br><span style="font-size:2rem">{{ smajor }}</span></div><div class="tip-card" style="background-color:#57b846">班级<br><span style="font-size:2rem">{{ sclass }}</span></div><div class="tip-card" style="background-color:coral">学号<br><span style="font-size:2rem">{{ scard }}</span></div></div></div>{% for typename,url_list in img_list.items %}<h2 class="img-title">{{ typename }}</h2><div class="flex-contain card" onclick='window.location="./imgShow?type={{ forloop.counter }}"'>{% for url in url_list %}<img class="campus" src="{{ url }}">{% endfor %}</div>{% endfor %}<h5 class="footer">浙江工业大学&精弘网络 © 2020 All Rights Reserved</h5></div></body></html>
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
+    <link href="/static/css/getID.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/animate.compat.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <title>新生查学号系统</title>
+</head>
+
+<body>
+    <div class="view-box">
+        <div class="animated swing card"><img class="logo" src="/static/images/logo1.png"
+                onclick='window.location.href="."'>
+            <h1 class="title s-name">您的信息</h1>
+            <p class="info-filed" style="font-size:{};">{{ sname }}</p>
+            <div class="flex-contain">
+                <div class="tip-card" style="background-color:#00bfff">专业<br><span
+                        style="font-size:2rem">{{ smajor }}</span></div>
+                <div class="tip-card" style="background-color:#57b846">班级<br><span
+                        style="font-size:2rem">{{ sclass }}</span></div>
+                <div class="tip-card" style="background-color:coral">学号<br><span
+                        style="font-size:2rem">{{ scard }}</span></div>
+            </div>
+        </div>
+        {% if scampus == "朝晖" %}
+        <h2 class="img-title">朝晖校区</h2>
+        <div class="flex-contain card" onclick='window.location="./imgShow?type={{ forloop.counter }}"'>
+            <img class="campus" src="/static/images/campus/zh_scenery/1.jpg">
+            <img class="campus" src="/static/images/campus/zh_scenery/2.jpg">
+            <img class="campus" src="/static/images/campus/zh_scenery/3.jpg">
+            <img class="campus" src="/static/images/campus/zh_scenery/4.jpg">
+        </div>
+        {% endif %}
+
+        {% if scampus == "屏峰" %}
+        <h2 class="img-title">屏峰校区</h2>
+        <div class="flex-contain card" onclick='window.location="./imgShow?type={{ forloop.counter }}"'>
+            <img class="campus" src="/static/images/campus/pf_scenery/1.jpg">
+            <img class="campus" src="/static/images/campus/pf_scenery/2.jpg">
+            <img class="campus" src="/static/images/campus/pf_scenery/3.jpg">
+            <img class="campus" src="/static/images/campus/pf_scenery/4.jpg">
+        </div>
+        {% endif %}
+        <!-- {% for typename,url_list in img_list.items %}
+        <h2 class="img-title">{{ typename }}</h2>
+        <div class="flex-contain card" onclick='window.location="./imgShow?type={{ forloop.counter }}"'>
+            {% for url in url_list %}
+            <img class="campus" src="{{ url }}">
+            {% endfor %}
+        </div>
+        {% endfor %} -->
+        <h5 class="footer">浙江工业大学&精弘网络 © 2020 All Rights Reserved</h5>
+    </div>
+</body>
+
+</html>

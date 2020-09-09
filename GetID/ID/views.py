@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.db.models import Q
+from django.core.cache import cache
 from .forms import *
 from .models import *
 import json
@@ -48,10 +49,12 @@ def index_dorm(request):
 
     sname = uf.cleaned_data['sname']
     sid = uf.cleaned_data['sid']
-    sha = hashlib.sha256()
+    sha = hashlib.md5()
     sha.update(sid.encode('utf8'))
     sid = sha.hexdigest()
+
     stu = Student.objects.filter(sname=sname, sid=sid)
+    print(sname,sid)
     if not stu:
         return render(request, 'indexDorm.html', {"message": res_msg.MSG_NOT_FOUND.value})
 
@@ -96,5 +99,6 @@ def index(request):
         obj = CampusImg.objects.filter(imgtype=img_type)
         img_list[v] = [obj[0].imgurl, obj[1].imgurl, obj[2].imgurl, obj[3].imgurl]
     context = {'sname': stu.sname, 'scard': stu.scard, 'smajor': stu.smajor,
-               'img_folder': img_folder, 'img_list': img_list, 'sclass': stu.sclass}
+               'img_folder': img_folder, 'img_list': img_list, 'sclass': stu.sclass,
+               'scampus': stu.scampus}
     return render(request, 'getID.html', context)
