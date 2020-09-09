@@ -15,7 +15,7 @@
         <div class="animated swing card"><img class="logo" src="/static/images/logo1.png"
                 onclick='window.location.href="."'>
             <h1 class="title s-name">您的信息</h1>
-            <p class="info-filed" style="font-size:{};">{{ sname }}</p>
+            <p class="info-filed">{{ sname }}</p>
             <div class="flex-contain">
                 <div class="tip-card" style="background-color:#00bfff">专业<br><span
                         style="font-size:2rem">{{ smajor }}</span></div>
@@ -27,7 +27,7 @@
         </div>
         {% if scampus == "朝晖" %}
         <h2 class="img-title">朝晖校区</h2>
-        <div class="flex-contain card" onclick='window.location="./imgShow?type={{ forloop.counter }}"'>
+        <div class="flex-contain card" onclick='window.location="./Imgshow?type=2"'>
             <img class="campus" src="/static/images/campus/zh_scenery/1.jpg">
             <img class="campus" src="/static/images/campus/zh_scenery/2.jpg">
             <img class="campus" src="/static/images/campus/zh_scenery/3.jpg">
@@ -37,7 +37,7 @@
 
         {% if scampus == "屏峰" %}
         <h2 class="img-title">屏峰校区</h2>
-        <div class="flex-contain card" onclick='window.location="./imgShow?type={{ forloop.counter }}"'>
+        <div class="flex-contain card" onclick='window.location="./Imgshow?type=1"'>
             <img class="campus" src="/static/images/campus/pf_scenery/1.jpg">
             <img class="campus" src="/static/images/campus/pf_scenery/2.jpg">
             <img class="campus" src="/static/images/campus/pf_scenery/3.jpg">

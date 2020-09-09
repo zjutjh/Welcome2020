@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.db.models import Q
 from django.core.cache import cache
+from django.views.decorators.cache import cache_page
 from .forms import *
 from .models import *
 import json
@@ -18,14 +19,13 @@ class res_msg(Enum):
     MSG_ERROR = "请正确填写信息"
     MSG_NOT_FOUND = "没有查到你的信息"
 
-
+@cache_page(60*15)
 def page_not_found(request, exception=None):
     return render(request, 'index.html')
 
-
+@cache_page(60*15)
 def page_error(request, exception=None):
     return render(request, 'index.html')
-
 
 def img_show(request):
     img_type = request.GET.get('type')
@@ -37,7 +37,6 @@ def img_show(request):
     image_list = [i.imgurl for i in CampusImg.objects.filter(imgtype=img_type)]
     context = {'imgList': json.dumps(image_list), 'sname': 'sname'}
     return render(request, 'imgShow.html', context)
-
 
 def index_dorm(request):
     if request.method != "POST":
@@ -53,23 +52,30 @@ def index_dorm(request):
     sha.update(sid.encode('utf8'))
     sid = sha.hexdigest()
 
-    stu = Student.objects.filter(sname=sname, sid=sid)
-    print(sname,sid)
-    if not stu:
-        return render(request, 'indexDorm.html', {"message": res_msg.MSG_NOT_FOUND.value})
+    stu_cache=cache.get('GetID'+sname+sid)
+    if stu_cache is None:
+        stu = Student.objects.filter(sname=sname, sid=sid)
+        
+        if not stu:
+            return render(request, 'indexDorm.html', {"message": res_msg.MSG_NOT_FOUND.value})
+        
+        stu = stu[0]
+        cache.set('GetID'+sname+sid,stu)
+    else:
+        stu=stu_cache
 
-    img_list = {}
-    for img_type, v in img_folder.items():
-        obj = CampusImg.objects.filter(imgtype=img_type)
-        img_list[v] = [obj[0].imgurl, obj[1].imgurl, obj[2].imgurl, obj[3].imgurl]
+    room_cache=cache.get('GetRoom'+stu.shouse+stu.sroom)
+    if room_cache is None:
+        roommate = Student.objects.filter(sroom=stu.sroom, shouse=stu.shouse)
+        cache.set('GetRoom'+stu.shouse+stu.sroom,roommate)
+    else:
+        roommate=room_cache
+
+    roommate = roommate.filter(~Q(sid=stu.sid))
 
     request.session['sname'] = sname
-    stu = stu[0]
-    roommate = Student.objects.filter(sroom=stu.sroom, shouse=stu.shouse)
-    roommate = roommate.filter(~Q(sid=stu.sid))
     context = {'sname': stu.sname, 'sroom': stu.sroom, 'roommate': roommate,
-               'img_folder': img_folder, 'img_list': img_list, 'sbed': stu.sbed,
-               'shouse': stu.shouse, 'scampus': stu.scampus}
+               'sbed': stu.sbed,'shouse': stu.shouse, 'scampus': stu.scampus}
     return render(request, 'getDorm.html', context)
 
 def index(request):
@@ -86,19 +92,19 @@ def index(request):
     sha = hashlib.md5()
     sha.update(sid.encode('utf8'))
     sid = sha.hexdigest()
-
-    stu = Student.objects.filter(sname=sname, sid=sid)
-    if not stu:
-        message = res_msg.MSG_NOT_FOUND.value
-        return render(request, 'index.html', locals())
+    print(sname,sid)
+    stu_cache=cache.get('GetID'+sname+sid)
+    if stu_cache is None:
+        stu = Student.objects.filter(sname=sname, sid=sid)
+        if not stu:
+            message = res_msg.MSG_NOT_FOUND.value
+            return render(request, 'index.html', locals())
+        stu = stu[0]
+        cache.set('GetID'+sname+sid,stu)
+    else:
+        stu=stu_cache
 
     request.session['sname'] = sname
-    stu = stu[0]
-    img_list = {}
-    for img_type, v in img_folder.items():
-        obj = CampusImg.objects.filter(imgtype=img_type)
-        img_list[v] = [obj[0].imgurl, obj[1].imgurl, obj[2].imgurl, obj[3].imgurl]
     context = {'sname': stu.sname, 'scard': stu.scard, 'smajor': stu.smajor,
-               'img_folder': img_folder, 'img_list': img_list, 'sclass': stu.sclass,
-               'scampus': stu.scampus}
+               'sclass': stu.sclass, 'scampus': stu.scampus}
     return render(request, 'getID.html', context)

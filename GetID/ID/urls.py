@@ -10,6 +10,6 @@ handler500=views.page_error
 urlpatterns = [
     path('sid/', views.index, name='index_sid'),
     path('dorm/', views.index_dorm, name='indexDorm'),
-    path('imgShow/', views.img_show, name='imgShow'),
+    path('Imgshow/', views.img_show, name='Imgshow'),
     path('', views.index, name='index'),
 ]
