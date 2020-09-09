@@ -80,7 +80,7 @@ def index(request):
 
     sname = uf.cleaned_data['sname']
     sid = uf.cleaned_data['sid']
-    sha = hashlib.sha256()
+    sha = hashlib.md5()
     sha.update(sid.encode('utf8'))
     sid = sha.hexdigest()
 

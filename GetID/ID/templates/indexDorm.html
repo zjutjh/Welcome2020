@@ -1,1 +1,30 @@
-<!DOCTYPE html><html lang="en"><head><title>新生查学号系统</title><meta charset="UTF-8"><meta http-equiv="Cache-Control" CONTENT="private,must-revalidate"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"><link rel="stylesheet" type="text/css" href="/static/css/main.css"></head><body><div class="container-login100"><div class="card wrap-login100" style="text-align:inherit;padding:10%;margin-top:5%"><span class="login100-form-title">Welcome ZJUTer</span> <span class="login100-form-avatar"><img src="/static/images/logo1.png" alt="logo"></span><form class="login100-form validate-form" method="post">{% csrf_token %}<div class="wrap-input100 validate-input"><input class="input100" type="text" name="sname" required> <span class="focus-input100" data-placeholder="姓名"></span></div><div class="wrap-input100 validate-input" data-validate="Enter password"><input class="input100" type="text" name="sid" required> <span class="focus-input100" data-placeholder="身份证号"></span></div>{% if message %}<div class="err-text"><b>{{ message }}</b></div>{% endif %}<div class="container-login100-form-btn"><input type="submit" class="login100-form-btn" value="确定"></div></form></div></div><h5 class="footer">浙江工业大学&精弘网络 © 2020 All Rights Reserved</h5></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head><title>寝室查询</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
+    <link rel="icon" type="image/png" href="/static/images/icons/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+</head>
+<body>
+<div class="container-login100">
+    <div class="card wrap-login100 flex-contain" style="text-align:inherit;padding:8vmin;margin-top:5vh">
+
+         <span
+                 class="login100-form-title">Welcome ZJUTer</span> <span class="login100-form-avatar"><img
+            src="/static/images/logo1.png" alt="logo"></span>
+
+
+        <form class="login100-form validate-form" method="post">{% csrf_token %}
+            <div class="wrap-input100 validate-input"><input class="input100" type="text" name="sname" required> <span
+                    class="focus-input100" data-placeholder="姓名"></span></div>
+            <div class="wrap-input100 validate-input" data-validate="Enter password"><input class="input100" type="text"
+                                                                                            name="sid" required> <span
+                    class="focus-input100" data-placeholder="身份证号"></span></div>{% if message %}
+                <div class="err-text"><b>{{ message }}</b></div>{% endif %}
+            <div class="container-login100-form-btn"><input type="submit" class="login100-form-btn" value="确定"></div>
+        </form>
+    </div>
+</div>
+<h5 class="footer">浙江工业大学&精弘网络 © 2020 All Rights Reserved</h5></body>
+</html>

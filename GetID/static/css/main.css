@@ -27,7 +27,6 @@ button:hover {
 
 .container-login100 {
     display: flex;
-    padding: 1rem;
     min-height: 80vh;
     flex-wrap: wrap;
     justify-content: center;
@@ -44,7 +43,7 @@ button:hover {
 
 .login100-form-title {
     display: block;
-    margin-bottom: 20%;
+    margin: 1rem;
     color: #333333;
     text-align: center;
     font-weight: bolder;
@@ -54,9 +53,9 @@ button:hover {
 .login100-form-avatar {
     display: block;
     overflow: hidden;
-    margin: auto auto 10%;
-    width: 8rem;
-    height: 8rem;
+    margin: 0.5rem;
+    width: 6rem;
+    height: 6rem;
     border-radius: 50%;
     box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
 }
@@ -220,7 +219,7 @@ img {
     padding: 1vw;
     max-width: 90vw;
     border-radius: 2rem;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.65);
     box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, .132), 0 1.2px 3.6px 0 rgba(0, 0, 0, .108);
     text-align: center;
     transition: all 0.4s;
@@ -228,7 +227,6 @@ img {
 
 .flex-contain {
     display: flex;
-    flex-grow: 2;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -308,7 +306,7 @@ img {
     background: rgba(24, 157, 245, 0.8);
     box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
     color: #ffffff;
-      transition: all 0.4s;
+    transition: all 0.4s;
 }
 
 .tip-card:hover {
@@ -319,5 +317,5 @@ img {
     background: rgba(24, 157, 245, 0.6);
     box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
     color: #ffffff;
-      transition: all 0.4s;
+    transition: all 0.4s;
 }
