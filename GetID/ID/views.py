@@ -19,13 +19,16 @@ class res_msg(Enum):
     MSG_ERROR = "请正确填写信息"
     MSG_NOT_FOUND = "没有查到你的信息"
 
-@cache_page(60*15)
+
+@cache_page(60 * 15)
 def page_not_found(request, exception=None):
     return render(request, 'index.html')
 
-@cache_page(60*15)
+
+@cache_page(60 * 15)
 def page_error(request, exception=None):
     return render(request, 'index.html')
+
 
 def img_show(request):
     img_type = request.GET.get('type')
@@ -38,10 +41,13 @@ def img_show(request):
     context = {'imgList': json.dumps(image_list), 'sname': 'sname'}
     return render(request, 'imgShow.html', context)
 
-def index_dorm(request):
-    if request.method != "POST":
-        return render(request, 'indexDorm.html')
 
+def index_dorm(request):
+    print(request)
+    return render(request, 'indexDorm.html')
+
+
+def dorm_info(request):
     uf = getDormForm(request.POST)
     if not uf.is_valid():
         return render(request, 'indexDorm.html', {"message": res_msg.MSG_ERROR.value})
@@ -52,36 +58,38 @@ def index_dorm(request):
     sha.update(sid.encode('utf8'))
     sid = sha.hexdigest()
 
-    stu_cache=cache.get('GetID'+sname+sid)
+    stu_cache = cache.get('GetID_' + sname + sid)
     if stu_cache is None:
         stu = Student.objects.filter(sname=sname, sid=sid)
-        
+
         if not stu:
             return render(request, 'indexDorm.html', {"message": res_msg.MSG_NOT_FOUND.value})
-        
-        stu = stu[0]
-        cache.set('GetID'+sname+sid,stu)
-    else:
-        stu=stu_cache
 
-    room_cache=cache.get('GetRoom'+stu.shouse+stu.sroom)
+        stu = stu[0]
+        cache.set('GetID_' + sname + sid, stu)
+    else:
+        stu = stu_cache
+
+    room_cache = cache.get('GetRoom_' + stu.shouse + stu.sroom)
     if room_cache is None:
         roommate = Student.objects.filter(sroom=stu.sroom, shouse=stu.shouse)
-        cache.set('GetRoom'+stu.shouse+stu.sroom,roommate)
+        cache.set('GetRoom_' + stu.shouse + stu.sroom, roommate)
     else:
-        roommate=room_cache
+        roommate = room_cache
 
     roommate = roommate.filter(~Q(sid=stu.sid))
 
     request.session['sname'] = sname
     context = {'sname': stu.sname, 'sroom': stu.sroom, 'roommate': roommate,
-               'sbed': stu.sbed,'shouse': stu.shouse, 'scampus': stu.scampus}
+               'sbed': stu.sbed, 'shouse': stu.shouse, 'scampus': stu.scampus}
     return render(request, 'getDorm.html', context)
 
-def index(request):
-    if request.method != "POST":
-        return render(request, 'index.html', locals())
 
+def index(request):
+    return render(request, 'index.html', locals())
+
+
+def sid_info(request):
     uf = getIDForm(request.POST)
     if not uf.is_valid():
         message = res_msg.MSG_ERROR.value
@@ -92,17 +100,16 @@ def index(request):
     sha = hashlib.md5()
     sha.update(sid.encode('utf8'))
     sid = sha.hexdigest()
-    print(sname,sid)
-    stu_cache=cache.get('GetID'+sname+sid)
+    stu_cache = cache.get('GetID_' + sname + sid)
     if stu_cache is None:
         stu = Student.objects.filter(sname=sname, sid=sid)
         if not stu:
             message = res_msg.MSG_NOT_FOUND.value
             return render(request, 'index.html', locals())
         stu = stu[0]
-        cache.set('GetID'+sname+sid,stu)
+        cache.set('GetID_' + sname + sid, stu)
     else:
-        stu=stu_cache
+        stu = stu_cache
 
     request.session['sname'] = sname
     context = {'sname': stu.sname, 'scard': stu.scard, 'smajor': stu.smajor,

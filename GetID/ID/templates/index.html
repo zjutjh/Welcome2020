@@ -1,5 +1,5 @@
-{% load cache %}
-{% cache 5000 'cache_index' %}
+{#{% load cache %}#}
+{#{% cache 5000 'cache_index' %}#}
 <!DOCTYPE html>
 <html lang="en">
 <head><title>学号查询</title>
@@ -16,18 +16,20 @@
                  class="login100-form-title">Welcome ZJUTer</span> <span class="login100-form-avatar"><img
             src="/static/images/logo1.png" alt="logo"></span>
 
-
-        <form class="login100-form validate-form" method="post">{% csrf_token %}
-            <div class="wrap-input100 validate-input"><input class="input100" type="text" name="sname" required> <span
-                    class="focus-input100" data-placeholder="姓名"></span></div>
-            <div class="wrap-input100 validate-input"><input id="stuID" class="input100" type="text"
-                                                                                            name="sid" required> <span
-                    class="focus-input100" data-placeholder="身份证号"></span></div>{% if message %}
+        <form class="login100-form validate-form" action="/sid/info" method="post" novalidate="novalidate"
+              onsubmit='return checkForm()'>{% csrf_token %}
+            <div class="wrap-input100 validate-input">
+                <input id="stuName" class="input100" type="text" name="sname" required >
+                <span class="focus-input100" data-placeholder="姓名"></span></div>
+            <div class="wrap-input100 validate-input"><input id="stuID" class="input100" type="text" name="sid" required>
+                <span class="focus-input100" data-placeholder="身份证号"></span></div>{% if message %}
                 <div class="err-text"><b>{{ message }}</b></div>{% endif %}
-            <div class="container-login100-form-btn"><input type="submit" class="login100-form-btn" value="确定"></div>
+            <div class="container-login100-form-btn"><input type="submit" class="login100-form-btn" value="确定">
+            </div>
         </form>
     </div>
 </div>
+<script src="/static/js/utils.js"></script>
 <h5 class="footer">浙江工业大学&精弘网络 © 2020 All Rights Reserved</h5></body>
 </html>
-{% endcache %}
+{#{% endcache %}#}

@@ -1,15 +1,15 @@
 from django.urls import path
-from django.conf.urls import handler404,handler500
+from django.conf.urls import handler404, handler500
 from . import views
 
 app_name = 'ID'
 
-handler404=views.page_not_found
-handler500=views.page_error
-
 urlpatterns = [
+
+    path('sid/info', views.sid_info, name='indo_sid'),
+    path('dorm/info', views.dorm_info, name='info_sid'),
     path('sid/', views.index, name='index_sid'),
     path('dorm/', views.index_dorm, name='indexDorm'),
-    path('Imgshow/', views.img_show, name='Imgshow'),
-    path('', views.index, name='index'),
+    path('imgshow/', views.img_show, name='imgshow'),
+    # path('', views.index, name='index'),
 ]

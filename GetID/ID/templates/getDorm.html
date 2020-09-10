@@ -20,7 +20,7 @@
             <div class="flex-contain">
                 <div class="tip-card" style="background-color:coral">校区🏞<br><span
                         style="font-size:2rem">{{ scampus }}</span></div>
-                <div onclick="window.location.href='http://map.zjut.edu.cn/mobile/#/poi/detail/459633'" class="tip-card" style="background-color:#57b846">寝室楼🏠<br><span
+                <div class="tip-card" style="background-color:#57b846">寝室楼🏠<br><span
                         style="font-size:2rem">{{ shouse }}</span></div>
                 <div class="tip-card" style="background-color:#9370db">寝室号🚪<br><span
                         style="font-size:2rem">{{ sroom }}</span></div>
@@ -38,7 +38,7 @@
         </div>
         {% if scampus == "朝晖" %}
         <h2 class="img-title">朝晖校区寝室</h2>
-        <div class="flex-contain card" onclick='window.location="../Imgshow?type=6"'>
+        <div class="flex-contain card" onclick='window.location="../imgshow?type=6"'>
             <img class="campus" src="/static/images/campus/zh_doom/1.jpg">
             <img class="campus" src="/static/images/campus/zh_doom/2.jpg">
             <img class="campus" src="/static/images/campus/zh_doom/3.jpg">
@@ -48,21 +48,13 @@
 
         {% if scampus == "屏峰" %}
         <h2 class="img-title">屏峰校区寝室</h2>
-        <div class="flex-contain card" onclick='window.location="../Imgshow?type=5"'>
+        <div class="flex-contain card" onclick='window.location="../imgshow?type=5"'>
             <img class="campus" src="/static/images/campus/pf_doom/1.jpg">
             <img class="campus" src="/static/images/campus/pf_doom/2.jpg">
             <img class="campus" src="/static/images/campus/pf_doom/3.jpg">
             <img class="campus" src="/static/images/campus/pf_doom/4.jpg">
         </div>
         {% endif %}
-        <!-- {% for typename,url_list in img_list.items %}
-        <h2 class="img-title">{{ typename }}</h2>
-        <div class="card">
-            {% for url in url_list %}
-            <img class="campus" onclick='window.location="../imgShow?type={{ forloop.counter }}"' src="{{ url }}">
-            {% endfor %}
-        </div>
-        {% endfor %} -->
         <h5 class="footer">浙江工业大学&精弘网络 © 2020 All Rights Reserved</h5>
     </div>
 </body>

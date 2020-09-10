@@ -1,5 +1,3 @@
-{% load cache %}
-{% cache 5000 'cache_index' %}
 <!DOCTYPE html>
 <html lang="en">
 <head><title>寝室查询</title>
@@ -17,16 +15,18 @@
             src="/static/images/logo1.png" alt="logo"></span>
 
 
-        <form class="login100-form validate-form" method="post">{% csrf_token %}
-            <div class="wrap-input100 validate-input"><input class="input100" type="text" name="sname" required> <span
-                    class="focus-input100" data-placeholder="姓名"></span></div>
+        <form class="login100-form validate-form" method="post" action="/dorm/info" novalidate="novalidate"
+              onsubmit='return checkForm()'>{% csrf_token %}
+            <div class="wrap-input100 validate-input"><input class="input100" type="text" name="sname" required>
+                <span
+                        class="focus-input100" data-placeholder="姓名"></span></div>
             <div class="wrap-input100 validate-input"><input class="input100" type="text" name="sid" required> <span
                     class="focus-input100" data-placeholder="身份证号"></span></div>{% if message %}
                 <div class="err-text"><b>{{ message }}</b></div>{% endif %}
-            <div class="container-login100-form-btn"><input type="submit" class="login100-form-btn" value="确定"></div>
+            <div class="container-login100-form-btn"><input type="submit" class="login100-form-btn" value="确定">
+            </div>
         </form>
     </div>
 </div>
 <h5 class="footer">浙江工业大学&精弘网络 © 2020 All Rights Reserved</h5></body>
 </html>
-{% endcache %}
