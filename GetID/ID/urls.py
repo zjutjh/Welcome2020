@@ -11,5 +11,5 @@ urlpatterns = [
     path('sid/', views.index, name='index_sid'),
     path('dorm/', views.index_dorm, name='indexDorm'),
     path('imgshow/', views.img_show, name='imgshow'),
-    # path('', views.index, name='index'),
+    path('', views.index, name='index'),
 ]

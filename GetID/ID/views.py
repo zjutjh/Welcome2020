@@ -53,7 +53,7 @@ def dorm_info(request):
         return render(request, 'indexDorm.html', {"message": res_msg.MSG_ERROR.value})
 
     sname = uf.cleaned_data['sname']
-    sid = uf.cleaned_data['sid']
+    sid = uf.cleaned_data['sid'].upper().replace("•", "·").replace(".", "·").replace("。", "·").replace(" ", '')
     sha = hashlib.md5()
     sha.update(sid.encode('utf8'))
     sid = sha.hexdigest()
@@ -96,7 +96,7 @@ def sid_info(request):
         return render(request, 'index.html', locals())
 
     sname = uf.cleaned_data['sname']
-    sid = uf.cleaned_data['sid']
+    sid = uf.cleaned_data['sid'].upper().replace("•", "·").replace(".", "·").replace("。", "·").replace(" ", '')
     sha = hashlib.md5()
     sha.update(sid.encode('utf8'))
     sid = sha.hexdigest()
