@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 def name_validator(value):
-    if len(value) > 20 or len(value) <= 0:
+    if len(value) > 30 or len(value) <= 0:
         raise ValidationError(u"姓名格式不正确")
 
 

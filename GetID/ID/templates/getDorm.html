@@ -5,58 +5,64 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
     <meta charset="UTF-8">
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
-    <link href="/static/css/getID.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/static/css/animate.compat.css">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <title>新生查寝室系统</title>
 </head>
 
 <body>
-    <div class="view-box">
-        <div class="animated swing card"><img class="logo" src="/static/images/logo1.png" onclick='window.location="."'>
-            <h1 class="title s-name">您的信息</h1>
-            <p class="info-filed">{{ sname }}</p>
-            <h2 style="margin:1rem">您的寝室</h2>
-            <div class="flex-contain">
-                <div class="tip-card" style="background-color:coral">校区🏞<br><span
-                        style="font-size:2rem">{{ scampus }}</span></div>
-                <div class="tip-card" style="background-color:#57b846">寝室楼🏠<br><span
-                        style="font-size:2rem">{{ shouse }}</span></div>
-                <div class="tip-card" style="background-color:#9370db">寝室号🚪<br><span
-                        style="font-size:2rem">{{ sroom }}</span></div>
-                <div class="tip-card" style="background-color:orange">床号🛏<br><span
-                        style="font-size:2rem">{{ sbed }}</span></div>
-            </div>{% if roommate %}<h2 style="margin:1rem">您的室友</h2>{% endif %}<div class="flex-contain">
-                {% for mate in roommate %}
+<div class="view-box">
+    <div class="animated swing card"><img class="logo" src="/static/images/logo1.png" onclick='window.location="."'>
+        <h1 class="title s-name">您的信息</h1>
+        <p class="info-filed">{{ sname }}</p>
+        <h2 style="margin:1rem">您的寝室</h2>
+        <div class="flex-contain">
+            <div class="tip-card" style="background-color:coral">校区🏞<br><span
+                    style="font-size:2rem">{{ scampus }}</span></div>
+            <div class="tip-card" style="background-color:#57b846">寝室楼🏠<br><span
+                    style="font-size:2rem">{{ shouse }}</span></div>
+            <div class="tip-card" style="background-color:#9370db">寝室号🚪<br><span
+                    style="font-size:2rem">{{ sroom }}</span></div>
+            <div class="tip-card" style="background-color:orange">床号🛏<br><span
+                    style="font-size:2rem">{{ sbed }}</span></div>
+        </div>{% if roommate %}<h2 style="margin:1rem">您的室友</h2>{% endif %}
+        <div class="flex-contain">
+            {% for mate in roommate %}
                 <div class="tip-card">
                     <div style="font-size:.65rem">{{ mate.sclass }}</div>
                     <div style="font-size:1.2rem">{{ mate.sname }}</div>
                     <div style="font-size:1.5rem">{{ mate.sbed }}🛏</div>
                 </div>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
-        {% if scampus == "朝晖" %}
+    </div>
+    {% if scampus == "朝晖" %}
         <h2 class="img-title">朝晖校区寝室</h2>
         <div class="flex-contain card" onclick='window.location="../imgshow?type=6"'>
+            <div class="school-logo">
+                <img class="logo-background" src="/static/images/zjut.png"/>
+            </div>
             <img class="campus" src="/static/images/campus/zh_doom/1.jpg">
             <img class="campus" src="/static/images/campus/zh_doom/2.jpg">
             <img class="campus" src="/static/images/campus/zh_doom/3.jpg">
             <img class="campus" src="/static/images/campus/zh_doom/4.jpg">
         </div>
-        {% endif %}
+    {% endif %}
 
-        {% if scampus == "屏峰" %}
+    {% if scampus == "屏峰" %}
         <h2 class="img-title">屏峰校区寝室</h2>
         <div class="flex-contain card" onclick='window.location="../imgshow?type=5"'>
+            <div class="school-logo">
+                <img class="logo-background" src="/static/images/zjut.png"/>
+            </div>
             <img class="campus" src="/static/images/campus/pf_doom/1.jpg">
             <img class="campus" src="/static/images/campus/pf_doom/2.jpg">
             <img class="campus" src="/static/images/campus/pf_doom/3.jpg">
             <img class="campus" src="/static/images/campus/pf_doom/4.jpg">
         </div>
-        {% endif %}
-        <h5 class="footer">浙江工业大学&精弘网络 © 2020 All Rights Reserved</h5>
-    </div>
+    {% endif %}
+    <h5 class="footer">浙江工业大学&精弘网络 © 2020 All Rights Reserved</h5>
+</div>
 </body>
 
 </html>
