@@ -1,7 +1,6 @@
 import hashlib
 import json
 import logging
-from enum import Enum
 
 from django.core.cache import cache
 from django.db.models import Q
@@ -10,18 +9,13 @@ from django.views.decorators.cache import cache_page
 
 from .forms import *
 from .models import *
+from .utils import response_msg
 
 logger = logging.getLogger('app')
 
 imgType = ['pf_scenery', 'zh_scenery', 'pf_canteen', 'zh_canteen', 'pf_doom', 'zh_doom']
 img_folder = {'pf_scenery': '屏峰风光', 'zh_scenery': '朝晖风光', 'pf_canteen': '屏峰食堂',
               'zh_canteen': '朝晖食堂', 'pf_doom': '屏峰寝室', 'zh_doom': '朝晖寝室'}
-
-
-class res_msg(Enum):
-    MSG_ERROR = "请正确填写信息"
-    MSG_NOT_FOUND = "没有查到你的信息",
-    MSG_SYSTEM_ERROR = "系统错误请联系客服"
 
 
 @cache_page(60 * 15)
@@ -37,7 +31,7 @@ def page_error(request, exception=None):
 def img_show(request):
     img_type = request.GET.get('type')
     if not img_type.isdigit():
-        message = res_msg.MSG_ERROR.value
+        message = response_msg.MSG_ERROR.value
         return render(request, 'index.html', locals())
 
     img_type = imgType[int(img_type) - 1]
@@ -54,7 +48,7 @@ def index_dorm(request):
 def dorm_info(request):
     uf = getDormForm(request.POST)
     if not uf.is_valid():
-        return render(request, 'indexDorm.html', {"message": res_msg.MSG_ERROR.value})
+        return render(request, 'indexDorm.html', {"message": response_msg.MSG_ERROR.value})
 
     sname = uf.cleaned_data['sname']
     sid = uf.cleaned_data['sid'].upper().replace("•", "·").replace(".", "·").replace("。", "·").replace(" ", '')
@@ -66,7 +60,7 @@ def dorm_info(request):
     if stu_cache is None:
         stu = Student.objects.filter(sname=sname, sid=sid)
         if not stu:
-            return render(request, 'indexDorm.html', {"message": res_msg.MSG_NOT_FOUND.value})
+            return render(request, 'indexDorm.html', {"message": response_msg.MSG_NOT_FOUND.value})
 
         stu = stu[0]
         cache.set('GetID_' + sname + sid, stu)
@@ -90,7 +84,7 @@ def dorm_info(request):
 
     except Exception:
         logger.error('sid:%s sname:%s 学生信息错误' % (sid, sname))
-        return render(request, 'indexDorm.html', {"message": res_msg.MSG_SYSTEM_ERROR.value})
+        return render(request, 'indexDorm.html', {"message": response_msg.MSG_SYSTEM_ERROR.value})
 
 
 def index(request):
@@ -100,7 +94,8 @@ def index(request):
 def sid_info(request):
     uf = getIDForm(request.POST)
     if not uf.is_valid():
-        return render(request, 'index.html', {"message": res_msg.MSG_ERROR.value})
+        msg = {"message": response_msg.MSG_ERROR.value}
+        return render(request, 'index.html', msg)
 
     sname = uf.cleaned_data['sname']
     sid = uf.cleaned_data['sid'].upper().replace("•", "·").replace(".", "·").replace("。", "·").replace(" ", '')
@@ -111,7 +106,8 @@ def sid_info(request):
     if stu_cache is None:
         stu = Student.objects.filter(sname=sname, sid=sid)
         if not stu:
-            return render(request, 'index.html', {"message": res_msg.MSG_NOT_FOUND.value})
+            msg = {"message": response_msg.MSG_NOT_FOUND.value}
+            return render(request, 'index.html', msg)
 
         stu = stu[0]
         cache.set('GetID_' + sname + sid, stu)
@@ -122,6 +118,7 @@ def sid_info(request):
         context = {'sname': stu.sname, 'scard': stu.scard, 'smajor': stu.smajor,
                    'sclass': stu.sclass, 'scampus': stu.scampus}
         return render(request, 'getID.html', context)
+
     except Exception:
         logger.error('sid:%s sname:%s 学生信息错误' % (sid, sname))
-        return render(request, 'index.html', {"message": res_msg.MSG_SYSTEM_ERROR.value})
+        return render(request, 'index.html', {'message': response_msg.MSG_SYSTEM_ERROR.value})
