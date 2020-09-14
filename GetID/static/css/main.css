@@ -1,18 +1,12 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    outline: none;
-    border: none;
-    font-family: sans-serif;
-    transition: all 0.8s;
+html{
+    height: 100%;
 }
-
 body {
     background-image: linear-gradient(120deg, #5694dc 0%, #c2e9fb 90%);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    height: 100%;
 }
 
 img {
@@ -293,4 +287,13 @@ img {
     left: 0;
     right: 0;
     display: block;
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    font-family: sans-serif;
+    transition: all 0.8s;
 }
