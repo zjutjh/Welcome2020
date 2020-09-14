@@ -33,8 +33,8 @@ def img_show(request):
         context = {"message": response_msg.MSG_ERROR.value}
         return render(request, 'index.html', context)
 
-    img_type_index = img_type_index[int(img_type_index) - 1]
-    image_list = [i.imgurl for i in CampusImg.objects.filter(img_type=img_type_index)]
+    img_type_index = img_type[int(img_type_index) - 1]
+    image_list = [i.imgurl for i in CampusImg.objects.filter(imgtype=img_type_index)]
     context = {'imgList': json.dumps(image_list), 'sname': 'sname'}
     return render(request, 'imgShow.html', context)
 
