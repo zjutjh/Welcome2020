@@ -9,18 +9,9 @@ from django.views.decorators.cache import cache_page
 
 from .forms import *
 from .models import *
-from .utils import response_msg
+from .utils import response_msg, index_type, index_link, get_student, img_type, get_roommates
 
 logger = logging.getLogger('app')
-
-imgType = ['pf_scenery', 'zh_scenery', 'pf_canteen', 'zh_canteen', 'pf_doom', 'zh_doom']
-img_folder = {'pf_scenery': '屏峰风光', 'zh_scenery': '朝晖风光', 'pf_canteen': '屏峰食堂',
-              'zh_canteen': '朝晖食堂', 'pf_doom': '屏峰寝室', 'zh_doom': '朝晖寝室'}
-
-
-@cache_page(60 * 15)
-def page_not_found(request, exception=None):
-    return render(request, 'index.html')
 
 
 @cache_page(60 * 15)
@@ -28,91 +19,62 @@ def page_error(request, exception=None):
     return render(request, 'index.html')
 
 
-def img_show(request):
-    img_type = request.GET.get('type')
-    if not img_type.isdigit():
-        message = response_msg.MSG_ERROR.value
-        return render(request, 'index.html', locals())
+def index_dorm(request):
+    return render(request, 'index.html', context={"title": index_type.Dorm.value, "url": index_link.Dorm.value})
 
-    img_type = imgType[int(img_type) - 1]
-    image_list = [i.imgurl for i in CampusImg.objects.filter(imgtype=img_type)]
+
+def index(request):
+    return render(request, 'index.html', context={"title": index_type.Sid.value, "url": index_link.Sid.value})
+
+
+def img_show(request):
+    img_type_index = request.GET.get('type')
+    if not img_type_index.isdigit():
+        context = {"message": response_msg.MSG_ERROR.value}
+        return render(request, 'index.html', context)
+
+    img_type_index = img_type_index[int(img_type_index) - 1]
+    image_list = [i.imgurl for i in CampusImg.objects.filter(img_type=img_type_index)]
     context = {'imgList': json.dumps(image_list), 'sname': 'sname'}
     return render(request, 'imgShow.html', context)
-
-
-def index_dorm(request):
-    print(request)
-    return render(request, 'indexDorm.html')
 
 
 def dorm_info(request):
     uf = getDormForm(request.POST)
     if not uf.is_valid():
-        return render(request, 'indexDorm.html', {"message": response_msg.MSG_ERROR.value})
+        return render(request, 'index.html', {"title": index_type.Dorm.value, "url": index_link.Dorm.value,
+                                              "message": response_msg.MSG_ERROR.value})
 
-    sname = uf.cleaned_data['sname']
-    sid = uf.cleaned_data['sid'].upper().replace("•", "·").replace(".", "·").replace("。", "·").replace(" ", '')
-    sha = hashlib.md5()
-    sha.update(sid.encode('utf8'))
-    sid = sha.hexdigest()
+    stu = get_student(uf)
+    if stu is None:
+        return render(request, 'index.html', {"title": index_type.Dorm.value, "url": index_link.Dorm.value,
+                                              "message": response_msg.MSG_NOT_FOUND.value})
 
-    stu_cache = cache.get('GetID_' + sname + sid)
-    if stu_cache is None:
-        stu = Student.objects.filter(sname=sname, sid=sid)
-        if not stu:
-            return render(request, 'indexDorm.html', {"message": response_msg.MSG_NOT_FOUND.value})
-
-        stu = stu[0]
-        cache.set('GetID_' + sname + sid, stu)
-    else:
-        stu = stu_cache
-
-    room_cache = cache.get('GetRoom_' + stu.shouse + stu.sroom)
-    if room_cache is None:
-        roommate = Student.objects.filter(sroom=stu.sroom, shouse=stu.shouse)
-        cache.set('GetRoom_' + stu.shouse + stu.sroom, roommate)
-    else:
-        roommate = room_cache
-
-    roommate = roommate.filter(~Q(sid=stu.sid))
+    roommates = get_roommates(stu)
 
     try:
-
-        context = {'sname': stu.sname, 'sroom': stu.sroom, 'roommate': roommate,
+        context = {'sname': stu.sname, 'sroom': stu.sroom, 'roommate': roommates,
                    'sbed': stu.sbed, 'shouse': stu.shouse, 'scampus': stu.scampus}
         return render(request, 'getDorm.html', context)
 
     except Exception:
-        logger.error('sid:%s sname:%s 学生信息错误' % (sid, sname))
-        return render(request, 'indexDorm.html', {"message": response_msg.MSG_SYSTEM_ERROR.value})
-
-
-def index(request):
-    return render(request, 'index.html')
+        logger.error('sid:%s sname:%s 学生信息错误' % (stu.sid, stu.sname))
+        context = {"title": index_type.Dorm.value, "url": index_link.Dorm.value,
+                   "message": response_msg.MSG_SYSTEM_ERROR.value}
+        return render(request, 'index.html', context)
 
 
 def sid_info(request):
     uf = getIDForm(request.POST)
     if not uf.is_valid():
-        msg = {"message": response_msg.MSG_ERROR.value}
-        return render(request, 'index.html', msg)
+        context = {"message": response_msg.MSG_ERROR.value, "title": index_type.Sid.value, "url": index_link.Sid.value}
+        return render(request, 'index.html', context)
 
-    sname = uf.cleaned_data['sname']
-    sid = uf.cleaned_data['sid'].upper().replace("•", "·").replace(".", "·").replace("。", "·").replace(" ", '')
-    sha = hashlib.md5()
-    sha.update(sid.encode('utf8'))
-    sid = sha.hexdigest()
-    stu_cache = cache.get('GetID_' + sname + sid)
-    if stu_cache is None:
-        stu = Student.objects.filter(sname=sname, sid=sid)
-        if not stu:
-            msg = {"message": response_msg.MSG_NOT_FOUND.value}
-            return render(request, 'index.html', msg)
-
-        stu = stu[0]
-        cache.set('GetID_' + sname + sid, stu)
-    else:
-        stu = stu_cache
+    stu = get_student(uf)
+    if stu is None:
+        context = {"message": response_msg.MSG_NOT_FOUND.value, "title": index_type.Sid.value,
+                   "url": index_link.Sid.value}
+        return render(request, 'index.html', context)
 
     try:
         context = {'sname': stu.sname, 'scard': stu.scard, 'smajor': stu.smajor,
@@ -120,5 +82,7 @@ def sid_info(request):
         return render(request, 'getID.html', context)
 
     except Exception:
-        logger.error('sid:%s sname:%s 学生信息错误' % (sid, sname))
-        return render(request, 'index.html', {'message': response_msg.MSG_SYSTEM_ERROR.value})
+        logger.error('sid:%s sname:%s 学生信息错误' % (stu.sid, stu.sname))
+        context = {"title": index_type.Sid.value, "url": index_link.Sid.value,
+                   'message': response_msg.MSG_SYSTEM_ERROR.value}
+        return render(request, 'index.html', context)

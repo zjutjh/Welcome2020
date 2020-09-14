@@ -1,12 +1,13 @@
-body, html {
-    height: 100%;
-    font-family: sans-serif;
-}
 * {
     margin: 0;
     padding: 0;
     font-size: 14px;
+    outline: none;
+    border: none;
+    font-family: sans-serif;
+    transition: all 0.8s;
 }
+
 body {
     background-image: linear-gradient(120deg, #5694dc 0%, #c2e9fb 90%);
     background-size: cover;
@@ -14,39 +15,32 @@ body {
     background-attachment: fixed;
 }
 
-input {
-    outline: none;
-    border: none;
+img {
+    width: 95vw;
+    object-fit: cover;
 }
 
-button {
-    outline: none !important;
-    border: none;
-    background: transparent;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
-.container-login100 {
+.container-login {
     display: flex;
-    min-height: 80vh;
+    min-height: 70vh;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding-top: 5vh;
 }
 
-.wrap-login100 {
+.wrap-login {
     width: 70%;
+    text-align: inherit;
+    padding: 8vmin;
+    margin-top: 5vh
 }
 
-.login100-form {
+.login-form {
     width: 100%;
 }
 
-.login100-form-title {
-    display: block;
+.login-form-title {
     margin: 1rem;
     color: #333333;
     text-align: center;
@@ -54,38 +48,33 @@ button:hover {
     font-size: 3rem;
 }
 
-.login100-form-avatar {
-    display: block;
-    overflow: hidden;
+.login-form-avatar {
     margin: 0.5rem;
     width: 6rem;
     height: 6rem;
     border-radius: 50%;
-    box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
+    box-shadow: 0 26px 58px 0 rgba(0, 0, 0, .22), 0 5px 14px 0 rgba(0, 0, 0, .18);
 }
 
-.login100-form-avatar img {
+.login-form-avatar img {
     width: 100%;
 }
 
-.wrap-input100 {
+.wrap-input {
     position: relative;
     margin: 1rem 1rem 2rem;
     border-bottom: 2px solid #d9d9d9;
 }
 
-.input100 {
-    display: block;
+.input {
     padding: 0 5px;
-    width: 100%;
-    height: 52px;
+    height: 3.5rem;
     background: transparent;
     font-size: 1.2rem;
-    font-family: serif;
-    line-height: 1.2;
+    width: 100%;
 }
 
-.focus-input100 {
+.focus-input {
     position: absolute;
     top: 0;
     left: 0;
@@ -95,7 +84,7 @@ button:hover {
     pointer-events: none;
 }
 
-.focus-input100::before {
+.focus-input::before {
     position: absolute;
     bottom: -2px;
     left: 0;
@@ -107,7 +96,8 @@ button:hover {
     transition: all 0.4s;
 }
 
-.focus-input100::after {
+.focus-input::after {
+    text-align: left;
     position: absolute;
     top: 15px;
     left: 0;
@@ -120,52 +110,35 @@ button:hover {
     transition: all 0.4s;
 }
 
-.input100:focus + .focus-input100::after {
+.input:focus + .focus-input::after, .input:valid + .focus-input::after {
     top: -20px;
     font-size: 1rem;
 }
 
-.input100:valid + .focus-input100::after {
-    top: -20px;
-    font-size: 1rem;
-}
-
-.input100:focus + .focus-input100::before {
+.input:focus + .focus-input::before {
     width: 100%;
 }
 
-.container-login100-form-btn {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.login100-form-btn {
+.login-form-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: calc(100% - 4rem);
     height: 3rem;
     border-radius: 2rem;
     background-color: rgb(199 20 20);
-    box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18);
+    box-shadow: 0 26px 58px 0 rgba(0, 0, 0, .22), 0 5px 14px 0 rgba(0, 0, 0, .18);
     color: #fff;
     font-size: 1.5rem;
-    line-height: 1.2;
-    transition: all 0.4s;
-    backdrop-filter: saturate(180%) blur(20px);
-}
-
-.validate-input {
-    position: relative;
 }
 
 .err-text {
     margin-top: -1rem;
     margin-bottom: 1rem;
     color: red;
-    font-size: 2rem!important;
+    font-size: 2rem !important;
     text-align: center;
     white-space: pre-line;
-    transition: all 0.4s;
 }
 
 .footer {
@@ -183,20 +156,7 @@ button:hover {
     margin: 0.5rem;
     color: #003A80;
     font-weight: bold;
-    font-size: 2rem;
-}
-
-
-
-input[type=submit],
-input[type=button] {
-    cursor: pointer;
-}
-
-img {
-    width: 95vw;
-    border: none;
-    object-fit: cover;
+    font-size: 1.8rem;
 }
 
 .s-name {
@@ -223,7 +183,16 @@ img {
     background: rgba(255, 255, 255, 0.65);
     box-shadow: rgba(0, 0, 0, 0.22) 9px 9px 14px 0, rgba(255, 255, 255, 0.22) -10px -10px 15px 0;
     text-align: center;
-    transition: all 0.4s;
+}
+
+.card:hover {
+    margin: 0 auto 1rem;
+    padding: 5vw;
+    max-width: 85vw;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: rgba(0, 0, 0, 0.22) -5px -5px 14px 0, rgba(255, 255, 255, 0.22) 4px 4px 15px 0;
+    text-align: center;
 }
 
 .flex-contain {
@@ -232,17 +201,6 @@ img {
     justify-content: center;
     align-items: center;
     align-self: center;
-}
-
-.card:hover {
-    margin: 0 auto 10px;
-    padding: 0.5rem;
-    max-width: 85vw;
-    border-radius: 2rem;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: rgba(0, 0, 0, 0.22) 4px 4px 14px 0, rgba(255, 255, 255, 0.22) -5px -5px 15px 0;
-    text-align: center;
-    transition: all 0.4s;
 }
 
 .img-title {
@@ -267,17 +225,15 @@ img {
     height: 18vmax;
     border-radius: 20%;
     box-shadow: rgba(0, 0, 0, 0.22) 9px 9px 14px 0, rgba(255, 255, 255, 0.22) -10px -10px 15px 0;
-    transition: all 0.4s;
     object-fit: cover;
 }
 
 .campus:hover {
     margin: 0.4rem;
-    width: 17vmax;
-    height: 17vmax;
+    width: 18vmax;
+    height: 18vmax;
     border-radius: 20%;
     box-shadow: rgba(0, 0, 0, 0.22) 4px 4px 14px 0, rgba(255, 255, 255, 0.22) -5px -5px 15px 0;
-    transition: all 0.4s;
     object-fit: cover;
 }
 
@@ -298,6 +254,7 @@ img {
     max-width: 10rem;
     text-align: center;
 }
+
 .logo-background {
     height: 200px;
     width: 200px;
@@ -308,8 +265,8 @@ img {
     bottom: 0;
     right: 0;
     opacity: 0.5;
-
 }
+
 .tip-card {
     margin: 0.5rem;
     padding: 1rem;
@@ -318,7 +275,6 @@ img {
     background: rgba(24, 157, 245, 0.6);
     box-shadow: rgba(0, 0, 0, 0.22) 9px 9px 14px 0, rgba(255, 255, 255, 0.22) -10px -10px 15px 0;
     color: #ffffff;
-    transition: all 0.4s;
 }
 
 .tip-card:hover {
@@ -329,9 +285,9 @@ img {
     background: rgba(24, 157, 245, 0.4);
     box-shadow: rgba(0, 0, 0, 0.22) 4px 4px 14px 0, rgba(255, 255, 255, 0.22) -5px -5px 15px 0;
     color: #ffffff;
-    transition: all 0.4s;
 }
-.school-logo{
+
+.school-logo {
     z-index: -1;
     position: absolute;
     left: 0;

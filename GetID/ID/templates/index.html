@@ -1,31 +1,27 @@
 {#{% load cache %}#}
 {#{% cache 5000 'cache_index' %}#}
 <!DOCTYPE html>
-<html lang="en">
-<head><title>学号查询</title>
+<html lang="zh-CN">
+<head><title>{{ title }}查询</title>
     <meta charset="UTF-8">
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
     <link rel="icon" type="image/png" href="/static/images/icons/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 </head>
 <body>
-<div class="container-login100">
-    <div class="card wrap-login100 flex-contain" style="text-align:inherit;padding:8vmin;margin-top:5vh">
-
-         <span
-                 class="login100-form-title">Welcome ZJUTer</span> <span class="login100-form-avatar"><img
+<div class="container-login">
+    <div class="card wrap-login flex-contain">
+        <span class="login-form-title">Welcome ZJUTer</span> <span class="login-form-avatar"><img
             src="/static/images/logo1.png" alt="logo"></span>
-
-        <form class="login100-form validate-form" action="/sid/info" method="post" novalidate="novalidate"
+        <form class="login-form validate-form" action="{{ url }}" method="post" novalidate="novalidate"
               onsubmit='return checkForm()'>{% csrf_token %}
-            <div class="wrap-input100 validate-input">
-                <input id="stuName" class="input100" type="text" name="sname" required >
-                <span class="focus-input100" data-placeholder="🧑姓名"></span></div>
-            <div class="wrap-input100 validate-input"><input id="stuID" class="input100" type="text" name="sid" required>
-                <span class="focus-input100" data-placeholder="💳身份证号"></span></div>{% if message %}
+            <div class="wrap-input validate-input">
+                <input id="stuName" class="input" type="text" name="sname" required>
+                <span class="focus-input" data-placeholder="🧑姓名"></span></div>
+            <div class="wrap-input validate-input"><input id="stuID" class="input" type="text" name="sid" required>
+                <span class="focus-input" data-placeholder="💳身份证号"></span></div>{% if message %}
                 <div class="err-text"><b>{{ message }}</b></div>{% endif %}
-            <div class="container-login100-form-btn"><input type="submit" class="login100-form-btn" value="确定">
-            </div>
+            <input type="submit" class="login-form-btn" value="确定">
         </form>
     </div>
 </div>

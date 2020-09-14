@@ -1,11 +1,9 @@
 from django.urls import path
-from django.conf.urls import handler404, handler500
 from . import views
 
 app_name = 'ID'
 
 urlpatterns = [
-
     path('sid/info', views.sid_info, name='indo_sid'),
     path('dorm/info', views.dorm_info, name='info_sid'),
     path('sid/', views.index, name='index_sid'),
