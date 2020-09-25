@@ -48,6 +48,8 @@ def get_student(uf):
 
 
 def get_roommates(stu):
+    if stu.shouse is None or stu.sroom is None:
+        return None
     room_cache = cache.get('GetRoom_' + stu.shouse + stu.sroom)
     if room_cache is None:
         roommates = Student.objects.filter(sroom=stu.sroom, shouse=stu.shouse)

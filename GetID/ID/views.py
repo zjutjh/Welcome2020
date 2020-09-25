@@ -51,6 +51,10 @@ def dorm_info(request):
                                               "message": response_msg.MSG_NOT_FOUND.value})
 
     roommates = get_roommates(stu)
+    if roommates is None:
+        context = {'sname': stu.sname, 'sroom': '无', 'roommate': None,
+                   'sbed': '无', 'shouse': '无', 'scampus': stu.scampus}
+        return render(request, 'getDorm.html', context)
 
     try:
         context = {'sname': stu.sname, 'sroom': stu.sroom, 'roommate': roommates,
